@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 
-namespace API.Controllers
+namespace KibanaSerilog.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -47,7 +44,7 @@ namespace API.Controllers
         [Route("log-exception")]
         public IActionResult LogException()
         {
-            throw new Exception("Erro exemplo");          
+            throw new Exception("Erro exemplo");
         }
 
 

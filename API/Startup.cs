@@ -1,3 +1,7 @@
+using KibanaElastic.Application.CommandHandlers;
+using KibanaSerilog.Domain.Behaviors;
+using KibanaSerilog.Infrastructure.Ioc;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +12,7 @@ using Serilog;
 using Serilog.Sinks.Elasticsearch;
 using System;
 
-namespace API
+namespace KibanaSerilog.API
 {
     public class Startup
     {
@@ -40,6 +44,12 @@ namespace API
             //SWAGGER
             services.AddSwaggerGen();
 
+            //IOC
+            DependencyInjection.Build(services);
+
+            //MEDIATR
+            AddMediatr(services);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +57,6 @@ namespace API
         {
             //SWAGGER
             app.UseSwagger();
-            //SWAGGER
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
@@ -69,6 +78,15 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void AddMediatr(IServiceCollection services)
+        {
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            //MEDIATR
+            services.AddMediatR(typeof(Startup), typeof(UserHandler));
         }
     }
 }
