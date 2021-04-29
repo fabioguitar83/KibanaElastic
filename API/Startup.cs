@@ -1,4 +1,6 @@
-using KibanaElastic.Application.CommandHandlers;
+
+using FluentValidation;
+using KibanaSerilog.Application.CommandHandlers;
 using KibanaSerilog.Domain.Behaviors;
 using KibanaSerilog.Infrastructure.Ioc;
 using MediatR;
@@ -82,10 +84,15 @@ namespace KibanaSerilog.API
 
         private void AddMediatr(IServiceCollection services)
         {
+            var applicationAssemblyName = "KibanaSerilog.Domain";
+            var assembly = AppDomain.CurrentDomain.Load(applicationAssemblyName);
+
+            AssemblyScanner
+                .FindValidatorsInAssembly(assembly)
+                .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            //MEDIATR
             services.AddMediatR(typeof(Startup), typeof(UserHandler));
         }
     }

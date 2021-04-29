@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KibanaElastic.Application.CommandHandlers
+namespace KibanaSerilog.Application.CommandHandlers
 {
     public class UserHandler : IRequestHandler<UserAddRequest, BaseResponse>
     {
@@ -21,11 +21,6 @@ namespace KibanaElastic.Application.CommandHandlers
 
         public async Task<BaseResponse> Handle(UserAddRequest request, CancellationToken cancellationToken)
         {
-
-            if (!request.IsValid()) 
-            {
-                return new BaseResponse(HttpStatusCode.BadRequest, request.ReturnValidationErrorsToString());
-            }
 
             var user = new UserEntity()
             {

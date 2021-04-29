@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KibanaSerilog.Domain", "Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KibanaSerilog.Infrastructure", "Infrastructure\KibanaSerilog.Infrastructure.csproj", "{F833DBFA-031F-4A36-BA4E-A15069C9AECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KibanaElastic.Application", "KibanaElastic.Application\KibanaElastic.Application.csproj", "{1176AF8F-F8AB-4451-81B7-BFB13AC0BA54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KibanaSerilog.Application", "KibanaElastic.Application\KibanaSerilog.Application.csproj", "{1176AF8F-F8AB-4451-81B7-BFB13AC0BA54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
